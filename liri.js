@@ -40,7 +40,7 @@ var spotifyThisSong = function(newSong) {
 
   var spotify = new Spotify({
     id: "e1f1ad29ae97429d857b2c048bc8ece9",
-    secret: "a0862175b0874a85941d6377e24d442f"
+    secret: "e51fa0008e0249c8b048e25fe33650b1"
   });
 
   if (!newSong) {
@@ -50,21 +50,17 @@ var spotifyThisSong = function(newSong) {
         type: 'track',
         query: newSong
       }),
-      function(err, data) {
+      function(err, response) {
         if (err) {
           return console.log('Error occurred: ' + err);
         }
-
-
-        console.log(data.tracks.items[0].album.artists[0].name);
-        console.log(data.tracks.items[0].preview_url);
-        console.log(data.tracks.items[0].name);
-        console.log(data.tracks.items[0].album.name);
+        console.log(response.tracks.items[0].album.artists[0].name);
+        console.log(response.tracks.items[0].preview_url);
+        console.log(response.tracks.items[0].name);
+        console.log(response.tracks.items[0].album.name);
       };
   };
 };
-
-
 
 // This function will run if they want to get movie information
 var movieThis = function(newMovie) {
@@ -96,9 +92,10 @@ var doIt = function(newDo) {
     if (error) {
       return console.log(error);
     }
-    console.log(data);
+    let dataArr = data.split(",")
+    console.log(dataArr);
 
-    userInput(data);
+    userInput(dataArr[0],dataArr[1]);
   });
 };
 
